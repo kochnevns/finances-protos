@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        v5.26.1
-// source: finances.proto
+// source: finances/finances.proto
 
 package finances_v1
 
@@ -34,7 +34,7 @@ type ExpenseRequest struct {
 func (x *ExpenseRequest) Reset() {
 	*x = ExpenseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_finances_proto_msgTypes[0]
+		mi := &file_finances_finances_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -47,7 +47,7 @@ func (x *ExpenseRequest) String() string {
 func (*ExpenseRequest) ProtoMessage() {}
 
 func (x *ExpenseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_finances_proto_msgTypes[0]
+	mi := &file_finances_finances_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -60,7 +60,7 @@ func (x *ExpenseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExpenseRequest.ProtoReflect.Descriptor instead.
 func (*ExpenseRequest) Descriptor() ([]byte, []int) {
-	return file_finances_proto_rawDescGZIP(), []int{0}
+	return file_finances_finances_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *ExpenseRequest) GetAmount() int64 {
@@ -96,13 +96,13 @@ type ExpenseResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Ok bool `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"` // Indicates whether the user is an admin.
+	Ok bool `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
 }
 
 func (x *ExpenseResponse) Reset() {
 	*x = ExpenseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_finances_proto_msgTypes[1]
+		mi := &file_finances_finances_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -115,7 +115,7 @@ func (x *ExpenseResponse) String() string {
 func (*ExpenseResponse) ProtoMessage() {}
 
 func (x *ExpenseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_finances_proto_msgTypes[1]
+	mi := &file_finances_finances_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -128,7 +128,7 @@ func (x *ExpenseResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExpenseResponse.ProtoReflect.Descriptor instead.
 func (*ExpenseResponse) Descriptor() ([]byte, []int) {
-	return file_finances_proto_rawDescGZIP(), []int{1}
+	return file_finances_finances_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ExpenseResponse) GetOk() bool {
@@ -138,62 +138,543 @@ func (x *ExpenseResponse) GetOk() bool {
 	return false
 }
 
-var File_finances_proto protoreflect.FileDescriptor
+type ExpensesListRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
 
-var file_finances_proto_rawDesc = []byte{
-	0x0a, 0x0e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x12, 0x08, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x73, 0x22, 0x6a, 0x0a, 0x0e, 0x45, 0x78,
-	0x70, 0x65, 0x6e, 0x73, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06,
-	0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x61, 0x6d,
-	0x6f, 0x75, 0x6e, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x77, 0x68, 0x6f, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x03, 0x77, 0x68, 0x6f, 0x12, 0x1a, 0x0a, 0x08, 0x63, 0x61, 0x74, 0x65, 0x67, 0x6f,
-	0x72, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x63, 0x61, 0x74, 0x65, 0x67, 0x6f,
-	0x72, 0x79, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x04, 0x64, 0x61, 0x74, 0x65, 0x22, 0x21, 0x0a, 0x0f, 0x45, 0x78, 0x70, 0x65, 0x6e, 0x73,
-	0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x6f, 0x6b, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x02, 0x6f, 0x6b, 0x32, 0x4a, 0x0a, 0x08, 0x46, 0x69, 0x6e,
-	0x61, 0x6e, 0x63, 0x65, 0x73, 0x12, 0x3e, 0x0a, 0x07, 0x45, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65,
-	0x12, 0x18, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x73, 0x2e, 0x45, 0x78, 0x70, 0x65,
-	0x6e, 0x73, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x66, 0x69, 0x6e,
-	0x61, 0x6e, 0x63, 0x65, 0x73, 0x2e, 0x45, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x0d, 0x5a, 0x0b, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x65,
-	0x73, 0x2e, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	Datefrom string `protobuf:"bytes,1,opt,name=datefrom,proto3" json:"datefrom,omitempty"`
+	Dateto   string `protobuf:"bytes,2,opt,name=dateto,proto3" json:"dateto,omitempty"`
+}
+
+func (x *ExpensesListRequest) Reset() {
+	*x = ExpensesListRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_finances_finances_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ExpensesListRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExpensesListRequest) ProtoMessage() {}
+
+func (x *ExpensesListRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_finances_finances_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExpensesListRequest.ProtoReflect.Descriptor instead.
+func (*ExpensesListRequest) Descriptor() ([]byte, []int) {
+	return file_finances_finances_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ExpensesListRequest) GetDatefrom() string {
+	if x != nil {
+		return x.Datefrom
+	}
+	return ""
+}
+
+func (x *ExpensesListRequest) GetDateto() string {
+	if x != nil {
+		return x.Dateto
+	}
+	return ""
+}
+
+type ExpensesListResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Expenses []*Expense `protobuf:"bytes,1,rep,name=expenses,proto3" json:"expenses,omitempty"`
+}
+
+func (x *ExpensesListResponse) Reset() {
+	*x = ExpensesListResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_finances_finances_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ExpensesListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExpensesListResponse) ProtoMessage() {}
+
+func (x *ExpensesListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_finances_finances_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExpensesListResponse.ProtoReflect.Descriptor instead.
+func (*ExpensesListResponse) Descriptor() ([]byte, []int) {
+	return file_finances_finances_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ExpensesListResponse) GetExpenses() []*Expense {
+	if x != nil {
+		return x.Expenses
+	}
+	return nil
+}
+
+type Expense struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Amount   int64  `protobuf:"varint,1,opt,name=amount,proto3" json:"amount,omitempty"`
+	Who      string `protobuf:"bytes,2,opt,name=who,proto3" json:"who,omitempty"`
+	Category string `protobuf:"bytes,3,opt,name=category,proto3" json:"category,omitempty"`
+	Date     string `protobuf:"bytes,4,opt,name=date,proto3" json:"date,omitempty"`
+}
+
+func (x *Expense) Reset() {
+	*x = Expense{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_finances_finances_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Expense) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Expense) ProtoMessage() {}
+
+func (x *Expense) ProtoReflect() protoreflect.Message {
+	mi := &file_finances_finances_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Expense.ProtoReflect.Descriptor instead.
+func (*Expense) Descriptor() ([]byte, []int) {
+	return file_finances_finances_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *Expense) GetAmount() int64 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+func (x *Expense) GetWho() string {
+	if x != nil {
+		return x.Who
+	}
+	return ""
+}
+
+func (x *Expense) GetCategory() string {
+	if x != nil {
+		return x.Category
+	}
+	return ""
+}
+
+func (x *Expense) GetDate() string {
+	if x != nil {
+		return x.Date
+	}
+	return ""
+}
+
+type CreateCategoryRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *CreateCategoryRequest) Reset() {
+	*x = CreateCategoryRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_finances_finances_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateCategoryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateCategoryRequest) ProtoMessage() {}
+
+func (x *CreateCategoryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_finances_finances_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateCategoryRequest.ProtoReflect.Descriptor instead.
+func (*CreateCategoryRequest) Descriptor() ([]byte, []int) {
+	return file_finances_finances_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *CreateCategoryRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type CreateCategoryResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Ok bool `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+}
+
+func (x *CreateCategoryResponse) Reset() {
+	*x = CreateCategoryResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_finances_finances_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateCategoryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateCategoryResponse) ProtoMessage() {}
+
+func (x *CreateCategoryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_finances_finances_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateCategoryResponse.ProtoReflect.Descriptor instead.
+func (*CreateCategoryResponse) Descriptor() ([]byte, []int) {
+	return file_finances_finances_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *CreateCategoryResponse) GetOk() bool {
+	if x != nil {
+		return x.Ok
+	}
+	return false
+}
+
+type CategoriesListRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Datefrom string `protobuf:"bytes,1,opt,name=datefrom,proto3" json:"datefrom,omitempty"`
+	Dateto   string `protobuf:"bytes,2,opt,name=dateto,proto3" json:"dateto,omitempty"`
+}
+
+func (x *CategoriesListRequest) Reset() {
+	*x = CategoriesListRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_finances_finances_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CategoriesListRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CategoriesListRequest) ProtoMessage() {}
+
+func (x *CategoriesListRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_finances_finances_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CategoriesListRequest.ProtoReflect.Descriptor instead.
+func (*CategoriesListRequest) Descriptor() ([]byte, []int) {
+	return file_finances_finances_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *CategoriesListRequest) GetDatefrom() string {
+	if x != nil {
+		return x.Datefrom
+	}
+	return ""
+}
+
+func (x *CategoriesListRequest) GetDateto() string {
+	if x != nil {
+		return x.Dateto
+	}
+	return ""
+}
+
+type CategoriesListResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Categories []*Category `protobuf:"bytes,1,rep,name=categories,proto3" json:"categories,omitempty"`
+}
+
+func (x *CategoriesListResponse) Reset() {
+	*x = CategoriesListResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_finances_finances_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CategoriesListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CategoriesListResponse) ProtoMessage() {}
+
+func (x *CategoriesListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_finances_finances_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CategoriesListResponse.ProtoReflect.Descriptor instead.
+func (*CategoriesListResponse) Descriptor() ([]byte, []int) {
+	return file_finances_finances_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *CategoriesListResponse) GetCategories() []*Category {
+	if x != nil {
+		return x.Categories
+	}
+	return nil
+}
+
+type Category struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *Category) Reset() {
+	*x = Category{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_finances_finances_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Category) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Category) ProtoMessage() {}
+
+func (x *Category) ProtoReflect() protoreflect.Message {
+	mi := &file_finances_finances_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Category.ProtoReflect.Descriptor instead.
+func (*Category) Descriptor() ([]byte, []int) {
+	return file_finances_finances_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *Category) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+var File_finances_finances_proto protoreflect.FileDescriptor
+
+var file_finances_finances_proto_rawDesc = []byte{
+	0x0a, 0x17, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x73, 0x2f, 0x66, 0x69, 0x6e, 0x61, 0x6e,
+	0x63, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x08, 0x66, 0x69, 0x6e, 0x61, 0x6e,
+	0x63, 0x65, 0x73, 0x22, 0x6a, 0x0a, 0x0e, 0x45, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x10, 0x0a,
+	0x03, 0x77, 0x68, 0x6f, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x77, 0x68, 0x6f, 0x12,
+	0x1a, 0x0a, 0x08, 0x63, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x08, 0x63, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x12, 0x12, 0x0a, 0x04, 0x64,
+	0x61, 0x74, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x64, 0x61, 0x74, 0x65, 0x22,
+	0x21, 0x0a, 0x0f, 0x45, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x6f, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x02,
+	0x6f, 0x6b, 0x22, 0x49, 0x0a, 0x13, 0x45, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65, 0x73, 0x4c, 0x69,
+	0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x64, 0x61, 0x74,
+	0x65, 0x66, 0x72, 0x6f, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x64, 0x61, 0x74,
+	0x65, 0x66, 0x72, 0x6f, 0x6d, 0x12, 0x16, 0x0a, 0x06, 0x64, 0x61, 0x74, 0x65, 0x74, 0x6f, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x64, 0x61, 0x74, 0x65, 0x74, 0x6f, 0x22, 0x45, 0x0a,
+	0x14, 0x45, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65, 0x73, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2d, 0x0a, 0x08, 0x65, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65,
+	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63,
+	0x65, 0x73, 0x2e, 0x45, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65, 0x52, 0x08, 0x65, 0x78, 0x70, 0x65,
+	0x6e, 0x73, 0x65, 0x73, 0x22, 0x63, 0x0a, 0x07, 0x45, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65, 0x12,
+	0x16, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x77, 0x68, 0x6f, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x77, 0x68, 0x6f, 0x12, 0x1a, 0x0a, 0x08, 0x63, 0x61, 0x74,
+	0x65, 0x67, 0x6f, 0x72, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x63, 0x61, 0x74,
+	0x65, 0x67, 0x6f, 0x72, 0x79, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x65, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x04, 0x64, 0x61, 0x74, 0x65, 0x22, 0x2b, 0x0a, 0x15, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x28, 0x0a, 0x16, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x0e, 0x0a, 0x02, 0x6f, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x02, 0x6f, 0x6b,
+	0x22, 0x4b, 0x0a, 0x15, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x69, 0x65, 0x73, 0x4c, 0x69,
+	0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x64, 0x61, 0x74,
+	0x65, 0x66, 0x72, 0x6f, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x64, 0x61, 0x74,
+	0x65, 0x66, 0x72, 0x6f, 0x6d, 0x12, 0x16, 0x0a, 0x06, 0x64, 0x61, 0x74, 0x65, 0x74, 0x6f, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x64, 0x61, 0x74, 0x65, 0x74, 0x6f, 0x22, 0x4c, 0x0a,
+	0x16, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x69, 0x65, 0x73, 0x4c, 0x69, 0x73, 0x74, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x32, 0x0a, 0x0a, 0x63, 0x61, 0x74, 0x65, 0x67,
+	0x6f, 0x72, 0x69, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x66, 0x69,
+	0x6e, 0x61, 0x6e, 0x63, 0x65, 0x73, 0x2e, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x52,
+	0x0a, 0x63, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x69, 0x65, 0x73, 0x22, 0x1e, 0x0a, 0x08, 0x43,
+	0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x32, 0xc3, 0x02, 0x0a, 0x08,
+	0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x73, 0x12, 0x3e, 0x0a, 0x07, 0x45, 0x78, 0x70, 0x65,
+	0x6e, 0x73, 0x65, 0x12, 0x18, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x73, 0x2e, 0x45,
+	0x78, 0x70, 0x65, 0x6e, 0x73, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e,
+	0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x73, 0x2e, 0x45, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4d, 0x0a, 0x0c, 0x45, 0x78, 0x70, 0x65,
+	0x6e, 0x73, 0x65, 0x73, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x1d, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e,
+	0x63, 0x65, 0x73, 0x2e, 0x45, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65, 0x73, 0x4c, 0x69, 0x73, 0x74,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63,
+	0x65, 0x73, 0x2e, 0x45, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65, 0x73, 0x4c, 0x69, 0x73, 0x74, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x0e, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x12, 0x1f, 0x2e, 0x66, 0x69, 0x6e, 0x61,
+	0x6e, 0x63, 0x65, 0x73, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x61, 0x74, 0x65, 0x67,
+	0x6f, 0x72, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e, 0x66, 0x69, 0x6e,
+	0x61, 0x6e, 0x63, 0x65, 0x73, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x61, 0x74, 0x65,
+	0x67, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x0e,
+	0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x69, 0x65, 0x73, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x1f,
+	0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x73, 0x2e, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f,
+	0x72, 0x69, 0x65, 0x73, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x20, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x73, 0x2e, 0x43, 0x61, 0x74, 0x65, 0x67,
+	0x6f, 0x72, 0x69, 0x65, 0x73, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x42, 0x0d, 0x5a, 0x0b, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x73, 0x2e, 0x76, 0x31,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_finances_proto_rawDescOnce sync.Once
-	file_finances_proto_rawDescData = file_finances_proto_rawDesc
+	file_finances_finances_proto_rawDescOnce sync.Once
+	file_finances_finances_proto_rawDescData = file_finances_finances_proto_rawDesc
 )
 
-func file_finances_proto_rawDescGZIP() []byte {
-	file_finances_proto_rawDescOnce.Do(func() {
-		file_finances_proto_rawDescData = protoimpl.X.CompressGZIP(file_finances_proto_rawDescData)
+func file_finances_finances_proto_rawDescGZIP() []byte {
+	file_finances_finances_proto_rawDescOnce.Do(func() {
+		file_finances_finances_proto_rawDescData = protoimpl.X.CompressGZIP(file_finances_finances_proto_rawDescData)
 	})
-	return file_finances_proto_rawDescData
+	return file_finances_finances_proto_rawDescData
 }
 
-var file_finances_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_finances_proto_goTypes = []interface{}{
-	(*ExpenseRequest)(nil),  // 0: finances.ExpenseRequest
-	(*ExpenseResponse)(nil), // 1: finances.ExpenseResponse
+var file_finances_finances_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_finances_finances_proto_goTypes = []interface{}{
+	(*ExpenseRequest)(nil),         // 0: finances.ExpenseRequest
+	(*ExpenseResponse)(nil),        // 1: finances.ExpenseResponse
+	(*ExpensesListRequest)(nil),    // 2: finances.ExpensesListRequest
+	(*ExpensesListResponse)(nil),   // 3: finances.ExpensesListResponse
+	(*Expense)(nil),                // 4: finances.Expense
+	(*CreateCategoryRequest)(nil),  // 5: finances.CreateCategoryRequest
+	(*CreateCategoryResponse)(nil), // 6: finances.CreateCategoryResponse
+	(*CategoriesListRequest)(nil),  // 7: finances.CategoriesListRequest
+	(*CategoriesListResponse)(nil), // 8: finances.CategoriesListResponse
+	(*Category)(nil),               // 9: finances.Category
 }
-var file_finances_proto_depIdxs = []int32{
-	0, // 0: finances.Finances.Expense:input_type -> finances.ExpenseRequest
-	1, // 1: finances.Finances.Expense:output_type -> finances.ExpenseResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+var file_finances_finances_proto_depIdxs = []int32{
+	4, // 0: finances.ExpensesListResponse.expenses:type_name -> finances.Expense
+	9, // 1: finances.CategoriesListResponse.categories:type_name -> finances.Category
+	0, // 2: finances.Finances.Expense:input_type -> finances.ExpenseRequest
+	2, // 3: finances.Finances.ExpensesList:input_type -> finances.ExpensesListRequest
+	5, // 4: finances.Finances.CreateCategory:input_type -> finances.CreateCategoryRequest
+	7, // 5: finances.Finances.CategoriesList:input_type -> finances.CategoriesListRequest
+	1, // 6: finances.Finances.Expense:output_type -> finances.ExpenseResponse
+	3, // 7: finances.Finances.ExpensesList:output_type -> finances.ExpensesListResponse
+	6, // 8: finances.Finances.CreateCategory:output_type -> finances.CreateCategoryResponse
+	8, // 9: finances.Finances.CategoriesList:output_type -> finances.CategoriesListResponse
+	6, // [6:10] is the sub-list for method output_type
+	2, // [2:6] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
-func init() { file_finances_proto_init() }
-func file_finances_proto_init() {
-	if File_finances_proto != nil {
+func init() { file_finances_finances_proto_init() }
+func file_finances_finances_proto_init() {
+	if File_finances_finances_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_finances_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_finances_finances_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ExpenseRequest); i {
 			case 0:
 				return &v.state
@@ -205,8 +686,104 @@ func file_finances_proto_init() {
 				return nil
 			}
 		}
-		file_finances_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_finances_finances_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ExpenseResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_finances_finances_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ExpensesListRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_finances_finances_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ExpensesListResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_finances_finances_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Expense); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_finances_finances_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateCategoryRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_finances_finances_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateCategoryResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_finances_finances_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CategoriesListRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_finances_finances_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CategoriesListResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_finances_finances_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Category); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -222,18 +799,18 @@ func file_finances_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_finances_proto_rawDesc,
+			RawDescriptor: file_finances_finances_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_finances_proto_goTypes,
-		DependencyIndexes: file_finances_proto_depIdxs,
-		MessageInfos:      file_finances_proto_msgTypes,
+		GoTypes:           file_finances_finances_proto_goTypes,
+		DependencyIndexes: file_finances_finances_proto_depIdxs,
+		MessageInfos:      file_finances_finances_proto_msgTypes,
 	}.Build()
-	File_finances_proto = out.File
-	file_finances_proto_rawDesc = nil
-	file_finances_proto_goTypes = nil
-	file_finances_proto_depIdxs = nil
+	File_finances_finances_proto = out.File
+	file_finances_finances_proto_rawDesc = nil
+	file_finances_finances_proto_goTypes = nil
+	file_finances_finances_proto_depIdxs = nil
 }

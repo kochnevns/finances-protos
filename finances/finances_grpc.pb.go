@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v5.26.1
-// source: finances.proto
+// source: finances/finances.proto
 
 package finances_v1
 
@@ -22,8 +22,11 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FinancesClient interface {
-	// Register registers a new user.
+	// Expense adds an expense.
 	Expense(ctx context.Context, in *ExpenseRequest, opts ...grpc.CallOption) (*ExpenseResponse, error)
+	ExpensesList(ctx context.Context, in *ExpensesListRequest, opts ...grpc.CallOption) (*ExpensesListResponse, error)
+	CreateCategory(ctx context.Context, in *CreateCategoryRequest, opts ...grpc.CallOption) (*CreateCategoryResponse, error)
+	CategoriesList(ctx context.Context, in *CategoriesListRequest, opts ...grpc.CallOption) (*CategoriesListResponse, error)
 }
 
 type financesClient struct {
@@ -43,12 +46,42 @@ func (c *financesClient) Expense(ctx context.Context, in *ExpenseRequest, opts .
 	return out, nil
 }
 
+func (c *financesClient) ExpensesList(ctx context.Context, in *ExpensesListRequest, opts ...grpc.CallOption) (*ExpensesListResponse, error) {
+	out := new(ExpensesListResponse)
+	err := c.cc.Invoke(ctx, "/finances.Finances/ExpensesList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *financesClient) CreateCategory(ctx context.Context, in *CreateCategoryRequest, opts ...grpc.CallOption) (*CreateCategoryResponse, error) {
+	out := new(CreateCategoryResponse)
+	err := c.cc.Invoke(ctx, "/finances.Finances/CreateCategory", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *financesClient) CategoriesList(ctx context.Context, in *CategoriesListRequest, opts ...grpc.CallOption) (*CategoriesListResponse, error) {
+	out := new(CategoriesListResponse)
+	err := c.cc.Invoke(ctx, "/finances.Finances/CategoriesList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FinancesServer is the server API for Finances service.
 // All implementations must embed UnimplementedFinancesServer
 // for forward compatibility
 type FinancesServer interface {
-	// Register registers a new user.
+	// Expense adds an expense.
 	Expense(context.Context, *ExpenseRequest) (*ExpenseResponse, error)
+	ExpensesList(context.Context, *ExpensesListRequest) (*ExpensesListResponse, error)
+	CreateCategory(context.Context, *CreateCategoryRequest) (*CreateCategoryResponse, error)
+	CategoriesList(context.Context, *CategoriesListRequest) (*CategoriesListResponse, error)
 	mustEmbedUnimplementedFinancesServer()
 }
 
@@ -58,6 +91,15 @@ type UnimplementedFinancesServer struct {
 
 func (UnimplementedFinancesServer) Expense(context.Context, *ExpenseRequest) (*ExpenseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Expense not implemented")
+}
+func (UnimplementedFinancesServer) ExpensesList(context.Context, *ExpensesListRequest) (*ExpensesListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExpensesList not implemented")
+}
+func (UnimplementedFinancesServer) CreateCategory(context.Context, *CreateCategoryRequest) (*CreateCategoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCategory not implemented")
+}
+func (UnimplementedFinancesServer) CategoriesList(context.Context, *CategoriesListRequest) (*CategoriesListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CategoriesList not implemented")
 }
 func (UnimplementedFinancesServer) mustEmbedUnimplementedFinancesServer() {}
 
@@ -90,6 +132,60 @@ func _Finances_Expense_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Finances_ExpensesList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExpensesListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FinancesServer).ExpensesList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/finances.Finances/ExpensesList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FinancesServer).ExpensesList(ctx, req.(*ExpensesListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Finances_CreateCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateCategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FinancesServer).CreateCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/finances.Finances/CreateCategory",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FinancesServer).CreateCategory(ctx, req.(*CreateCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Finances_CategoriesList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CategoriesListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FinancesServer).CategoriesList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/finances.Finances/CategoriesList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FinancesServer).CategoriesList(ctx, req.(*CategoriesListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Finances_ServiceDesc is the grpc.ServiceDesc for Finances service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -101,7 +197,19 @@ var Finances_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "Expense",
 			Handler:    _Finances_Expense_Handler,
 		},
+		{
+			MethodName: "ExpensesList",
+			Handler:    _Finances_ExpensesList_Handler,
+		},
+		{
+			MethodName: "CreateCategory",
+			Handler:    _Finances_CreateCategory_Handler,
+		},
+		{
+			MethodName: "CategoriesList",
+			Handler:    _Finances_CategoriesList_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "finances.proto",
+	Metadata: "finances/finances.proto",
 }
