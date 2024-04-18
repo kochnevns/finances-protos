@@ -25,6 +25,7 @@ message ExpenseRequest {
   string who = 2;
   string category = 3;
   string date = 4;
+  string description = 5;
 }
 
 message ExpenseResponse {
@@ -66,4 +67,6 @@ message CategoriesListResponse {
 
 message Category {
   string name = 1;
+  string image = 2;
+  string color = 3;
 }
