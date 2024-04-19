@@ -15,6 +15,8 @@ service Finances {
 
   rpc CategoriesList(CategoriesListRequest) returns (CategoriesListResponse);
 
+  rpc Report(ReportRequest) returns (ReportResponse);
+
   // rpc DeleteCategory(DeleteCategoryRequest) returns (DeleteCategoryResponse);
 
   // rpc EditCategory(EditCategoryRequest) returns (EditCategoryResponse);
@@ -69,4 +71,25 @@ message Category {
   string name = 1;
   string image = 2;
   string color = 3;
+}
+
+enum Type {
+  week = 0;
+  month = 1;
+  year = 2;
+}
+
+message ReportRequest {
+   Type type = 1;
+}
+
+message ReportCategory {
+  int64 amount = 1;
+  int64 percent = 2;
+  string name = 3;
+}
+
+message ReportResponse {
+  int64 total = 1;
+  repeated ReportCategory categories = 2;
 }

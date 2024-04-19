@@ -89,6 +89,47 @@
         }
       }
     },
+    "financesReportCategory": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "format": "int64"
+        },
+        "percent": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "financesReportResponse": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "string",
+          "format": "int64"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/financesReportCategory"
+          }
+        }
+      }
+    },
+    "financesType": {
+      "type": "string",
+      "enum": [
+        "week",
+        "month",
+        "year"
+      ],
+      "default": "week"
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
