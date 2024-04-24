@@ -58,7 +58,7 @@
           "type": "string",
           "format": "int64"
         },
-        "who": {
+        "description": {
           "type": "string"
         },
         "category": {

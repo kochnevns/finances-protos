@@ -45,7 +45,7 @@ message ExpensesListResponse {
 
 message Expense {
   int64 amount = 1;
-  string who = 2;
+  string description = 2;
   string category = 3;
   string date = 4;
 }
