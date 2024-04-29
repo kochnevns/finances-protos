@@ -86,6 +86,10 @@
             "type": "object",
             "$ref": "#/definitions/financesExpense"
           }
+        },
+        "total": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

@@ -37,10 +37,12 @@ message ExpenseResponse {
 message ExpensesListRequest {
   string datefrom = 1;
   string dateto = 2;
+  string category = 3;
 }
 
 message ExpensesListResponse {
   repeated Expense expenses = 1;
+  int64 total = 2;
 }
 
 message Expense {
