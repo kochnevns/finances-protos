@@ -50,6 +50,7 @@ message Expense {
   string description = 2;
   string category = 3;
   string date = 4;
+  string color = 5;
 }
 
 message CreateCategoryRequest {
@@ -82,13 +83,14 @@ enum Type {
 }
 
 message ReportRequest {
-   Type type = 1;
+  Type type = 1;
 }
 
 message ReportCategory {
   int64 amount = 1;
   int64 percent = 2;
   string name = 3;
+  string color = 4;
 }
 
 message ReportResponse {

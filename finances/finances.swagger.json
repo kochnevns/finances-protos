@@ -66,6 +66,9 @@
         },
         "date": {
           "type": "string"
+        },
+        "color": {
+          "type": "string"
         }
       }
     },
@@ -105,6 +108,9 @@
           "format": "int64"
         },
         "name": {
+          "type": "string"
+        },
+        "color": {
           "type": "string"
         }
       }
