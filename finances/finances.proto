@@ -9,6 +9,8 @@ service Finances {
   // Expense adds an expense.
   rpc Expense (ExpenseRequest) returns (ExpenseResponse);
 
+  rpc ExpenseEdit (ExpenseEditRequest) returns (ExpenseResponse);
+
   rpc ExpensesList(ExpensesListRequest) returns (ExpensesListResponse);
 
   rpc CreateCategory(CreateCategoryRequest) returns (CreateCategoryResponse);
@@ -51,6 +53,10 @@ message Expense {
   string category = 3;
   string date = 4;
   string color = 5;
+}
+
+message ExpenseEditRequest {
+  Expense expense = 1;
 }
 
 message CreateCategoryRequest {

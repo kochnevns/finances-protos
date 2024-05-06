@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	Finances_Expense_FullMethodName        = "/finances.Finances/Expense"
+	Finances_ExpenseEdit_FullMethodName    = "/finances.Finances/ExpenseEdit"
 	Finances_ExpensesList_FullMethodName   = "/finances.Finances/ExpensesList"
 	Finances_CreateCategory_FullMethodName = "/finances.Finances/CreateCategory"
 	Finances_CategoriesList_FullMethodName = "/finances.Finances/CategoriesList"
@@ -32,6 +33,7 @@ const (
 type FinancesClient interface {
 	// Expense adds an expense.
 	Expense(ctx context.Context, in *ExpenseRequest, opts ...grpc.CallOption) (*ExpenseResponse, error)
+	ExpenseEdit(ctx context.Context, in *ExpenseEditRequest, opts ...grpc.CallOption) (*ExpenseResponse, error)
 	ExpensesList(ctx context.Context, in *ExpensesListRequest, opts ...grpc.CallOption) (*ExpensesListResponse, error)
 	CreateCategory(ctx context.Context, in *CreateCategoryRequest, opts ...grpc.CallOption) (*CreateCategoryResponse, error)
 	CategoriesList(ctx context.Context, in *CategoriesListRequest, opts ...grpc.CallOption) (*CategoriesListResponse, error)
@@ -49,6 +51,15 @@ func NewFinancesClient(cc grpc.ClientConnInterface) FinancesClient {
 func (c *financesClient) Expense(ctx context.Context, in *ExpenseRequest, opts ...grpc.CallOption) (*ExpenseResponse, error) {
 	out := new(ExpenseResponse)
 	err := c.cc.Invoke(ctx, Finances_Expense_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *financesClient) ExpenseEdit(ctx context.Context, in *ExpenseEditRequest, opts ...grpc.CallOption) (*ExpenseResponse, error) {
+	out := new(ExpenseResponse)
+	err := c.cc.Invoke(ctx, Finances_ExpenseEdit_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -97,6 +108,7 @@ func (c *financesClient) Report(ctx context.Context, in *ReportRequest, opts ...
 type FinancesServer interface {
 	// Expense adds an expense.
 	Expense(context.Context, *ExpenseRequest) (*ExpenseResponse, error)
+	ExpenseEdit(context.Context, *ExpenseEditRequest) (*ExpenseResponse, error)
 	ExpensesList(context.Context, *ExpensesListRequest) (*ExpensesListResponse, error)
 	CreateCategory(context.Context, *CreateCategoryRequest) (*CreateCategoryResponse, error)
 	CategoriesList(context.Context, *CategoriesListRequest) (*CategoriesListResponse, error)
@@ -110,6 +122,9 @@ type UnimplementedFinancesServer struct {
 
 func (UnimplementedFinancesServer) Expense(context.Context, *ExpenseRequest) (*ExpenseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Expense not implemented")
+}
+func (UnimplementedFinancesServer) ExpenseEdit(context.Context, *ExpenseEditRequest) (*ExpenseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExpenseEdit not implemented")
 }
 func (UnimplementedFinancesServer) ExpensesList(context.Context, *ExpensesListRequest) (*ExpensesListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExpensesList not implemented")
@@ -150,6 +165,24 @@ func _Finances_Expense_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FinancesServer).Expense(ctx, req.(*ExpenseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Finances_ExpenseEdit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExpenseEditRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FinancesServer).ExpenseEdit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Finances_ExpenseEdit_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FinancesServer).ExpenseEdit(ctx, req.(*ExpenseEditRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -236,6 +269,10 @@ var Finances_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Expense",
 			Handler:    _Finances_Expense_Handler,
+		},
+		{
+			MethodName: "ExpenseEdit",
+			Handler:    _Finances_ExpenseEdit_Handler,
 		},
 		{
 			MethodName: "ExpensesList",
