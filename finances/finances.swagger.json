@@ -100,6 +100,25 @@
         }
       }
     },
+    "financesReport": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "string",
+          "format": "int64"
+        },
+        "month": {
+          "type": "string"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/financesReportCategory"
+          }
+        }
+      }
+    },
     "financesReportCategory": {
       "type": "object",
       "properties": {
@@ -122,15 +141,11 @@
     "financesReportResponse": {
       "type": "object",
       "properties": {
-        "total": {
-          "type": "string",
-          "format": "int64"
-        },
-        "categories": {
+        "monthes": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/financesReportCategory"
+            "$ref": "#/definitions/financesReport"
           }
         }
       }

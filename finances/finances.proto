@@ -101,6 +101,11 @@ message ReportCategory {
 }
 
 message ReportResponse {
+  repeated Report monthes = 1;
+}
+
+message Report {
   int64 total = 1;
-  repeated ReportCategory categories = 2;
+  string month = 2;
+  repeated ReportCategory categories = 3;
 }
