@@ -100,6 +100,18 @@
         }
       }
     },
+    "financesMassiveReportResponse": {
+      "type": "object",
+      "properties": {
+        "monthes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/financesReportResponse"
+          }
+        }
+      }
+    },
     "financesReportCategory": {
       "type": "object",
       "properties": {
@@ -125,6 +137,9 @@
         "total": {
           "type": "string",
           "format": "int64"
+        },
+        "month": {
+          "type": "string"
         },
         "categories": {
           "type": "array",

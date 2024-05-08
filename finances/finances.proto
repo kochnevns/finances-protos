@@ -19,10 +19,14 @@ service Finances {
 
   rpc Report(ReportRequest) returns (ReportResponse);
 
+  rpc MassiveReport(MassiveReportRequest) returns (MassiveReportResponse);
+
   // rpc DeleteCategory(DeleteCategoryRequest) returns (DeleteCategoryResponse);
 
   // rpc EditCategory(EditCategoryRequest) returns (EditCategoryResponse);
 }
+
+message MassiveReportRequest {}
 
 message ExpenseRequest {
   int64 amount = 1;
@@ -102,5 +106,10 @@ message ReportCategory {
 
 message ReportResponse {
   int64 total = 1;
-  repeated ReportCategory categories = 2;
+  string month = 2;
+  repeated ReportCategory categories = 3;
+}
+
+message MassiveReportResponse {
+  repeated ReportResponse monthes  = 1;
 }

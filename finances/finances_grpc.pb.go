@@ -25,6 +25,7 @@ const (
 	Finances_CreateCategory_FullMethodName = "/finances.Finances/CreateCategory"
 	Finances_CategoriesList_FullMethodName = "/finances.Finances/CategoriesList"
 	Finances_Report_FullMethodName         = "/finances.Finances/Report"
+	Finances_MassiveReport_FullMethodName  = "/finances.Finances/MassiveReport"
 )
 
 // FinancesClient is the client API for Finances service.
@@ -38,6 +39,7 @@ type FinancesClient interface {
 	CreateCategory(ctx context.Context, in *CreateCategoryRequest, opts ...grpc.CallOption) (*CreateCategoryResponse, error)
 	CategoriesList(ctx context.Context, in *CategoriesListRequest, opts ...grpc.CallOption) (*CategoriesListResponse, error)
 	Report(ctx context.Context, in *ReportRequest, opts ...grpc.CallOption) (*ReportResponse, error)
+	MassiveReport(ctx context.Context, in *MassiveReportRequest, opts ...grpc.CallOption) (*MassiveReportResponse, error)
 }
 
 type financesClient struct {
@@ -102,6 +104,15 @@ func (c *financesClient) Report(ctx context.Context, in *ReportRequest, opts ...
 	return out, nil
 }
 
+func (c *financesClient) MassiveReport(ctx context.Context, in *MassiveReportRequest, opts ...grpc.CallOption) (*MassiveReportResponse, error) {
+	out := new(MassiveReportResponse)
+	err := c.cc.Invoke(ctx, Finances_MassiveReport_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FinancesServer is the server API for Finances service.
 // All implementations must embed UnimplementedFinancesServer
 // for forward compatibility
@@ -113,6 +124,7 @@ type FinancesServer interface {
 	CreateCategory(context.Context, *CreateCategoryRequest) (*CreateCategoryResponse, error)
 	CategoriesList(context.Context, *CategoriesListRequest) (*CategoriesListResponse, error)
 	Report(context.Context, *ReportRequest) (*ReportResponse, error)
+	MassiveReport(context.Context, *MassiveReportRequest) (*MassiveReportResponse, error)
 	mustEmbedUnimplementedFinancesServer()
 }
 
@@ -137,6 +149,9 @@ func (UnimplementedFinancesServer) CategoriesList(context.Context, *CategoriesLi
 }
 func (UnimplementedFinancesServer) Report(context.Context, *ReportRequest) (*ReportResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Report not implemented")
+}
+func (UnimplementedFinancesServer) MassiveReport(context.Context, *MassiveReportRequest) (*MassiveReportResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MassiveReport not implemented")
 }
 func (UnimplementedFinancesServer) mustEmbedUnimplementedFinancesServer() {}
 
@@ -259,6 +274,24 @@ func _Finances_Report_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Finances_MassiveReport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MassiveReportRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FinancesServer).MassiveReport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Finances_MassiveReport_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FinancesServer).MassiveReport(ctx, req.(*MassiveReportRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Finances_ServiceDesc is the grpc.ServiceDesc for Finances service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -289,6 +322,10 @@ var Finances_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Report",
 			Handler:    _Finances_Report_Handler,
+		},
+		{
+			MethodName: "MassiveReport",
+			Handler:    _Finances_MassiveReport_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
