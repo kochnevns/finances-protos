@@ -108,7 +108,9 @@ message ReportCategory {
 message ReportResponse {
   int64 total = 1;
   string month = 2;
-  repeated ReportCategory categories = 3;
+  int64 average = 3;
+  int64 median = 4;
+  repeated ReportCategory categories = 5;
 }
 
 message MassiveReportResponse {
